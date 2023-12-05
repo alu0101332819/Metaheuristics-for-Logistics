@@ -1,4 +1,4 @@
-package java.concrete.Problems.vehiclesVRP;
+package test.java.concrete.Problems.vehiclesVRP;
 
 public class EdgesTest {
     

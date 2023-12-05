@@ -1,4 +1,4 @@
-package java.concrete.Problems.containerBPP;
+package test.java.concrete.Problems.containerBPP;
 
 public class ItemTest {
     
