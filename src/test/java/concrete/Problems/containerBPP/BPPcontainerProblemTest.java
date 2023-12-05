@@ -11,102 +11,124 @@ import main.java.abstracts.problem.ILoadingProblems;
 import main.java.abstracts.problem.Problem;
 
 import org.junit.jupiter.api.Test;
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class BPPcontainerProblemTest {
 
     @Test
     void testConstructorWithFilename() {
-        String filename = "BPP_1.txt";
+        String filename = "BPP_1.txt"; // Provide a test file name
         BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(filename);
-        // Add assertions based on the expected behavior of the constructor with a filename
-        assertNotNull(bppContainerProblem);
-        // Example: assertEquals(expectedValue, bppContainerProblem.getSomeValue());
+        // Add assertions based on the expected behavior of the constructor
+        assertEquals(0, bppContainerProblem.getCapacity());
+        assertEquals(0, bppContainerProblem.getNumItems());
+    }
+
+    @Test
+    void testConstructorWithCapacityAndItems() {
+        int capacity = 10;
+        List<Item> items = new ArrayList<>();
+        items.add(new Item(3, 5));
+        items.add(new Item(2, 3));
+
+        BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(capacity, items);
+        // Add assertions based on the expected behavior of the constructor
+        assertEquals(capacity, bppContainerProblem.getCapacity());
+        assertEquals(items.size(), bppContainerProblem.getNumItems());
     }
 
     @Test
     void testInstancesFromText() {
+        String textInstances = "10:3-5,2-3";
         BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem();
-        bppContainerProblem.setTextInstances("10:1-2,3-4,5-6");
+        bppContainerProblem.setTextInstances(textInstances);
         bppContainerProblem.instancesFromText();
         // Add assertions based on the expected behavior of instancesFromText
         assertEquals(10, bppContainerProblem.getCapacity());
-        List<Item> items = bppContainerProblem.getItems();
-        assertEquals(3, items.size());
-        // Example: assertEquals(expectedValue, bppContainerProblem.getSomeValue());
+        assertEquals(2, bppContainerProblem.getNumItems());
     }
 
     @Test
     void testGetCapacity() {
-        BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(15, null);
-        int capacity = bppContainerProblem.getCapacity();
+        int capacity = 15;
+        BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(capacity, new ArrayList<>());
         // Add assertions based on the expected behavior of getCapacity
-        assertEquals(15, capacity);
-        // Example: assertEquals(expectedValue, bppContainerProblem.getSomeValue());
+        assertEquals(capacity, bppContainerProblem.getCapacity());
     }
 
     @Test
     void testGetItem() {
-        List<Item> items = List.of(new Item(1, 2), new Item(3, 4), new Item(5, 6));
+        List<Item> items = new ArrayList<>();
+        items.add(new Item(3, 5));
+        items.add(new Item(2, 3));
+
         BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(10, items);
-        Item item = bppContainerProblem.getItem(1);
         // Add assertions based on the expected behavior of getItem
-        assertNotNull(item);
-        assertEquals(3, item.getIndex());
-        // Example: assertEquals(expectedValue, bppContainerProblem.getSomeValue());
+        assertEquals(items.get(0), bppContainerProblem.getItem(0));
+        assertEquals(items.get(1), bppContainerProblem.getItem(1));
     }
 
     @Test
     void testGetItems() {
-        List<Item> items = List.of(new Item(1, 2), new Item(3, 4), new Item(5, 6));
+        List<Item> items = new ArrayList<>();
+        items.add(new Item(3, 5));
+        items.add(new Item(2, 3));
+
         BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(10, items);
-        List<Item> retrievedItems = bppContainerProblem.getItems();
         // Add assertions based on the expected behavior of getItems
-        assertNotNull(retrievedItems);
-        assertEquals(3, retrievedItems.size());
-        // Example: assertEquals(expectedValue, bppContainerProblem.getSomeValue());
+        assertEquals(items, bppContainerProblem.getItems());
     }
 
     @Test
     void testGetNumItems() {
-        List<Item> items = List.of(new Item(1, 2), new Item(3, 4), new Item(5, 6));
+        List<Item> items = new ArrayList<>();
+        items.add(new Item(3, 5));
+        items.add(new Item(2, 3));
+
         BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(10, items);
-        int numItems = bppContainerProblem.getNumItems();
         // Add assertions based on the expected behavior of getNumItems
-        assertEquals(3, numItems);
-        // Example: assertEquals(expectedValue, bppContainerProblem.getSomeValue());
+        assertEquals(items.size(), bppContainerProblem.getNumItems());
     }
 
     @Test
     void testToString() {
-        BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(10, null);
-        String toStringResult = bppContainerProblem.toString();
+        int capacity = 15;
+        BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(capacity, new ArrayList<>());
         // Add assertions based on the expected behavior of toString
-        assertNotNull(toStringResult);
-        assertTrue(toStringResult.contains("CAPACITY = 10"));
-        // Example: assertTrue(toStringResult.contains("ExpectedSubstring"));
+        assertEquals("{ CAPACITY = " + capacity + " }", bppContainerProblem.toString());
     }
 
     @Test
     void testPesoItems() {
-        List<Item> items = List.of(new Item(1, 2), new Item(3, 4), new Item(5, 6));
+        List<Item> items = new ArrayList<>();
+        items.add(new Item(3, 5));
+        items.add(new Item(2, 3));
+
         BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(10, items);
-        double pesoItems = bppContainerProblem.pesoItems();
         // Add assertions based on the expected behavior of pesoItems
-        assertEquals(12.0, pesoItems);
-        // Example: assertEquals(expectedValue, bppContainerProblem.getSomeValue());
+        assertEquals(3.0 + 2.0, bppContainerProblem.pesoItems());
     }
 
     @Test
     void testToStringWithOutputItems() {
-        List<Item> items = List.of(new Item(1, 2), new Item(3, 4), new Item(5, 6));
+        List<Item> items = new ArrayList<>();
+        items.add(new Item(3, 5));
+        items.add(new Item(2, 3));
+
         BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(10, items);
-        String toStringResult = bppContainerProblem.toString(true);
         // Add assertions based on the expected behavior of toString with outputItems
-        assertNotNull(toStringResult);
-        assertTrue(toStringResult.contains("CAPACITY = 10"));
-        assertTrue(toStringResult.contains("1-2"));
-        // Example: assertTrue(toStringResult.contains("ExpectedSubstring"));
+        assertTrue(bppContainerProblem.toString(true).contains(items.get(0).toString()));
+        assertTrue(bppContainerProblem.toString(true).contains(items.get(1).toString()));
+    }
+
+    @Test
+    void testToStringWithoutOutputItems() {
+        int capacity = 15;
+        BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(capacity, new ArrayList<>());
+        // Add assertions based on the expected behavior of toString without outputItems
+        assertEquals("{ CAPACITY = " + capacity + " }", bppContainerProblem.toString(false));
     }
 }
