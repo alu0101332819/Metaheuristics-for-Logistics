@@ -16,18 +16,18 @@ public class BPPcontainerView {
 	static final int GRASP = 4;
 
 	public static void run(Scanner sc, String dataFile) throws CloneNotSupportedException {
-		String fileName;
 		int opcion = 0;
-		BPPcontainerProblem instance = null;
-
-		if (dataFile != null) {
-			// Si dataFile se proporciona a través de la línea de comandos, úsalo directamente
-			fileName = dataFile;
-		} else {
-			// Pedir al usuario que ingrese el nombre del archivo
-			System.out.print("Introduce el nombre del fichero para el problema BPP (o 'exit' para salir): ");
-			fileName = sc.nextLine();
-		}
+	        BPPcontainerProblem instance = null;
+	
+	        if (dataFile != null) {
+	            // If dataFile is provided via the command line, use it directly
+	            // No need to assign fileName in this case
+	        } else {
+	            // Prompt the user to enter the name of the file
+	            System.out.print("Introduce el nombre del fichero para el problema BPP (o 'exit' para salir): ");
+	            String fileName = sc.nextLine(); // Declare and assign fileName directly here
+	            // No need to use fileName elsewhere in this block, so it won't be declared outside
+	        }
 
 		do {
 			if (!fileName.equalsIgnoreCase("exit")) {
