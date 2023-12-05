@@ -87,9 +87,6 @@ public class BPPcontainerView {
 			
 			}
 		} while (!fileName.equalsIgnoreCase("exit") && opcion != 0);
-		if (dataFile == null) {
-       		fileName = null;
-    	}
 	}
 
 	public static void hillClimbingBPP(ILoadingProblems bppProblem) {
