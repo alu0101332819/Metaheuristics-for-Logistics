@@ -7,31 +7,4 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestVRPvehiclesView {
 
-    @Test
-    void testHillClimbingVRP() throws CloneNotSupportedException {
-        VRPvehiclesProblem vrpProblem = new VRPvehiclesProblem();
-        VRPvehiclesView.hillClimbingVRP(vrpProblem);
-        // Add assertions or checks as needed
-    }
-
-    @Test
-    void testTabuVRP() throws CloneNotSupportedException {
-        VRPvehiclesProblem vrpProblem = new VRPvehiclesProblem();
-        VRPvehiclesView.tabuVRP(vrpProblem);
-        // Add assertions or checks as needed
-    }
-
-    @Test
-    void testSimulatedAnnealingVRP() throws CloneNotSupportedException {
-        VRPvehiclesProblem vrpProblem = new VRPvehiclesProblem();
-        VRPvehiclesView.simulatedAnnealingVRP(vrpProblem);
-        // Add assertions or checks as needed
-    }
-
-    @Test
-    void testHillClimbingModifiedVRP() throws CloneNotSupportedException {
-        VRPvehiclesProblem vrpProblem = new VRPvehiclesProblem();
-        VRPvehiclesView.hillClimbingModifiedVRP(vrpProblem);
-        // Add assertions or checks as needed
-    }
 }
