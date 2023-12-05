@@ -2,6 +2,7 @@ package main.java.concrete.Problems.containerBPP;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
 
 import main.java.abstracts.problem.ILoadingProblems;
@@ -9,8 +10,8 @@ import main.java.abstracts.problem.Problem;
 
 public class BPPcontainerProblem extends Problem implements ILoadingProblems {
 
-    private int ContainerArea;
-    private ArrayList<Item> items;
+    private int containerArea;
+    private List<Item> items;
 
     public BPPcontainerProblem() {
         // TODO Auto-generated constructor stub
@@ -24,9 +25,9 @@ public class BPPcontainerProblem extends Problem implements ILoadingProblems {
         this.textInstances = loadDataFromFile(filename);
     }
 
-    public BPPcontainerProblem(int capacity, ArrayList<Item> initialItems) {
+    public BPPcontainerProblem(int capacity, List<Item> initialItems) {
         super();
-        this.ContainerArea = capacity;
+        this.containerArea = capacity;
         this.items = initialItems;
     }
 
@@ -48,7 +49,7 @@ public class BPPcontainerProblem extends Problem implements ILoadingProblems {
         String text = textInstances;
         String[] parts = text.split(":");
         int capacity = Integer.parseInt(parts[0].trim());
-        ArrayList<Item> parsedItems = new ArrayList<>();
+        List<Item> parsedItems = new ArrayList<>();
         String[] strItems = parts[1].trim().split(",");
 
         for (String item : strItems) {
@@ -57,12 +58,12 @@ public class BPPcontainerProblem extends Problem implements ILoadingProblems {
         }
 
         this.items = parsedItems;
-        this.ContainerArea = capacity;
+        this.containerArea = capacity;
     }
 
     @Override
     public int getCapacity() {
-        return this.ContainerArea;
+        return this.containerArea;
     }
 
     @Override
@@ -71,7 +72,7 @@ public class BPPcontainerProblem extends Problem implements ILoadingProblems {
     }
 
     @Override
-    public ArrayList<Item> getItems() {
+    public List<Item> getItems() {
         return this.items;
     }
 
@@ -82,7 +83,7 @@ public class BPPcontainerProblem extends Problem implements ILoadingProblems {
 
     @Override
     public String toString() {
-        return "{ CAPACITY = " + this.ContainerArea + " }";
+        return "{ CAPACITY = " + this.containerArea + " }";
     }
 
     @Override
