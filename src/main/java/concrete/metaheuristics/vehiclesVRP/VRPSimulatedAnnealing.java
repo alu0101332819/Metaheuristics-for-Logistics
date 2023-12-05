@@ -12,7 +12,6 @@ import main.java.concrete.solutions.VRPvehiclesSolution;
  */
 public class VRPSimulatedAnnealing extends RoutingAbstractMHeuristics {
     int temp = 1000;
-    private IRoutingSolutions lastBestSolution;
     private Random random; // Instancia de Random para reutilización
 
     /**
@@ -54,7 +53,7 @@ public class VRPSimulatedAnnealing extends RoutingAbstractMHeuristics {
 
         IRoutingSolutions neighbourSolution;
         double rand;
-        lastBestSolution = (IRoutingSolutions) solution.clone();
+        IRoutingSolutions lastBestSolution = (IRoutingSolutions) solution.clone();
         do {
             neighbourSolution = this.randomNeighbour();
             rand = this.random.nextDouble();
