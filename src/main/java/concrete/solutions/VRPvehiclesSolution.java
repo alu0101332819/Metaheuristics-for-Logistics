@@ -194,6 +194,15 @@ public class VRPvehiclesSolution extends Solution implements IRoutingSolutions {
 		IRoutingSolutions sol = (IRoutingSolutions) obj;
 		return this.getCostPath(metaheuristics.getInstance()) - sol.getCostPath(metaheuristics.getInstance());
 	}
+
+	@Override
+	public int hashCode() {
+	    final int prime = 31;
+	    int result = 1;
+	    result = prime * result + Arrays.hashCode(solution);
+	    result = prime * result + size;
+	    return result;
+	}
 	
 	/* (non-Javadoc)
 		* @see concrete.solutions.RoutingSolutions#equals(java.lang.Object)
