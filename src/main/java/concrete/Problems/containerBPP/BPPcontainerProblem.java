@@ -11,21 +11,18 @@ public class BPPcontainerProblem extends Problem implements ILoadingProblems {
 
 	private int ContainerArea;
 	private ArrayList<Item> items;
-	
+
 	public BPPcontainerProblem() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
-	 * 
-	 * @param filename
-	 * Constructor using text file
+	 * @param filename Constructor using text file
 	 */
 	public BPPcontainerProblem(String filename) {
 		super();
-		this.textInstances = LoadDataFromFile(filename);
+		this.textInstances = loadDataFromFile(filename);
 	}
-	
 
 	public BPPcontainerProblem(int capacity, ArrayList<Item> items) {
 		super();
@@ -33,101 +30,77 @@ public class BPPcontainerProblem extends Problem implements ILoadingProblems {
 		this.items = items;
 	}
 
-	public String LoadDataFromFile(String filename) {
-	    // Leyendo el archivo que contiene las instancias
-	    char[] buff = new char[1024 * 10];
-	
-	    try (FileReader file = new FileReader(filename)) {
-	        file.read(buff);
-	    } catch (IOException e) {
-	        System.out.println("Error. " + e.getMessage());
-	        System.exit(0);
-	    }
-	    return new String(buff);
+	private String loadDataFromFile(String filename) {
+		// Reading the file that contains the instances
+		char[] buff = new char[1024 * 10];
+
+		try (FileReader file = new FileReader(filename)) {
+			file.read(buff);
+		} catch (IOException e) {
+			System.out.println("Error. " + e.getMessage());
+			System.exit(0);
+		}
+		return new String(buff);
 	}
-	
-	/* (non-Javadoc)
-	 * @see problems.LoadingProblems#instancesFromText()
-	 */
+
 	@Override
-	public void instancesFromText(){
+	public void instancesFromText() {
 		String text = textInstances;
-		String[] partes = text.split(":");
-		int capacity = new Integer( partes[0].trim() );
-		ArrayList<Item> items = new ArrayList<Item>();
-		String[] stritems = partes[1].trim().split( "," );
-		
-		for( String item : stritems ){
-			String[] atributos = item.split( "-" );
-			items.add( new Item( new Integer( atributos[0].trim() ), new Integer( atributos[1].trim() ) ) );
+		String[] parts = text.split(":");
+		int capacity = Integer.parseInt(parts[0].trim());
+		ArrayList<Item> items = new ArrayList<>();
+		String[] strItems = parts[1].trim().split(",");
+
+		for (String item : strItems) {
+			String[] attributes = item.split("-");
+			items.add(new Item(Integer.parseInt(attributes[0].trim()), Integer.parseInt(attributes[1].trim())));
 		}
 
 		this.items = items;
 		this.ContainerArea = capacity;
 	}
 
-	/* (non-Javadoc)
-	 * @see problems.LoadingProblems#getCapacity()
-	 */
 	@Override
-	public int getCapacity(){
+	public int getCapacity() {
 		return this.ContainerArea;
 	}
-	
-	/* (non-Javadoc)
-	 * @see problems.LoadingProblems#getItem(int)
-	 */
+
 	@Override
-	public Item getItem(int index ){
-		return this.items.get( index );
+	public Item getItem(int index) {
+		return this.items.get(index);
 	}
-	
-	/* (non-Javadoc)
-	 * @see problems.LoadingProblems#getItems()
-	 */
+
 	@Override
-	public ArrayList<Item> getItems(){
+	public ArrayList<Item> getItems() {
 		return this.items;
 	}
-	
-	/* (non-Javadoc)
-	 * @see problems.LoadingProblems#getNumItems()
-	 */
+
 	@Override
-	public int getNumItems(){
+	public int getNumItems() {
 		return this.items.size();
 	}
-	
-	/* (non-Javadoc)
-	 * @see problems.LoadingProblems#toString()
-	 */
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return "{ CAPACITY = " + this.ContainerArea + " }";
 	}
-	
-	/* (non-Javadoc)
-	 * @see problems.LoadingProblems#pesoItems()
-	 */
+
 	@Override
-	public double pesoItems(){
+	public double pesoItems() {
 		double p = 0;
-		
-		for( Item item : this.items )
-			p += (double)item.getWeight();
-		
+
+		for (Item item : this.items)
+			p += (double) item.getWeight();
+
 		return p;
 	}
-	
-	/* (non-Javadoc)
-	 * @see problems.LoadingProblems#toString(boolean)
-	 */
+
 	@Override
-	public String toString( boolean outputitems ){
-		String str = "";
-		if( outputitems ){
-			for( Item i : this.items ){
-				str += "\n\t" + i.toString();
+	public String toString(boolean outputItems) {
+		StringBuilder str = new StringBuilder();
+		if (outputItems) {
+			for (Item i : this.items) {
+				str.append("\n\t").append(i.toString());
 			}
 		}
 		return this.toString() + str;
