@@ -38,7 +38,7 @@ public class VRPvehiclesSolution extends Solution implements IRoutingSolutions {
 		this.solution = new int[size];
 	}
 
-	public VRPvehiclesSolution(int[] solution,RoutingAbstractMHeuristics methode) {
+	public VRPvehiclesSolution(int[] solution, RoutingAbstractMHeuristics methode) {
 		this.solution = solution;
 		this.size = solution.length;
 	}
@@ -110,7 +110,7 @@ public class VRPvehiclesSolution extends Solution implements IRoutingSolutions {
 		*/
 	@Override
 	public ArrayList<VRPvehiclesSolution> getNeighbours() throws CloneNotSupportedException{
-		ArrayList<VRPvehiclesSolution> neighbours = new ArrayList<VRPvehiclesSolution>();
+		ArrayList<VRPvehiclesSolution> neighbours = new ArrayList<>();
 		for( int i = 0 ; i < size-1 ; i++) {
 			neighbours.add(this.getNeighbour(i));
 		}
@@ -190,7 +190,6 @@ public class VRPvehiclesSolution extends Solution implements IRoutingSolutions {
 		*/
 	@Override
 	public int compareTo(Object obj) {
-		// TODO Auto-generated method stub
 		IRoutingSolutions sol = (IRoutingSolutions) obj;
 		return this.getCostPath(metaheuristics.getInstance()) - sol.getCostPath(metaheuristics.getInstance());
 	}
@@ -205,6 +204,17 @@ public class VRPvehiclesSolution extends Solution implements IRoutingSolutions {
 	}
 	
 	/* (non-Javadoc)
+		* @see concrete.solutions.RoutingSolutions#equals(java.lang.Object)
+		*/
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass
+
+    	/* (non-Javadoc)
 		* @see concrete.solutions.RoutingSolutions#equals(java.lang.Object)
 		*/
 	@Override
@@ -228,7 +238,6 @@ public class VRPvehiclesSolution extends Solution implements IRoutingSolutions {
 		*/
 	@Override
 	public void setSolution(Object[] array) {
-		// TODO Auto-generated method stub
 		for(int i = 0 ; i < solution.length ; i ++){
 			solution[i] = (int) array[i];
 		}
