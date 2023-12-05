@@ -1,6 +1,6 @@
 package main.java.abstracts.problem;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import main.java.concrete.Problems.containerBPP.Item;
 
