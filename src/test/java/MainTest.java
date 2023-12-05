@@ -1,4 +1,4 @@
-package test.java;
+package test.java.menus;
 
 import main.java.menus.Main;
 import main.java.menus.BPPcontainerView;
