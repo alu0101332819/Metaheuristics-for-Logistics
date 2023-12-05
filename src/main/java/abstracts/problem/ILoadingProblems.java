@@ -8,7 +8,7 @@ public interface ILoadingProblems {
 	void instancesFromText();
 	int getCapacity();
 	Item getItem(int index);
-	ArrayList<Item> getItems();
+	List<Item> getItems();
 	int getNumItems();
 	String toString();
 	double pesoItems();
