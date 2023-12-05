@@ -202,17 +202,6 @@ public class VRPvehiclesSolution extends Solution implements IRoutingSolutions {
 	    result = prime * result + size;
 	    return result;
 	}
-	
-	/* (non-Javadoc)
-		* @see concrete.solutions.RoutingSolutions#equals(java.lang.Object)
-		*/
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass
 
     	/* (non-Javadoc)
 		* @see concrete.solutions.RoutingSolutions#equals(java.lang.Object)
