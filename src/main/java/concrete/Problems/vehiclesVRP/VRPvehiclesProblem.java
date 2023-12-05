@@ -123,25 +123,16 @@ public class VRPvehiclesProblem extends Problem implements IRoutingProblems {
 
     @Override
     public String LoadDataFromFile(String filename) {
-        FileReader file = null;
-        char[] buff = new char[1024 * 10];
-        int length;
-        try {
-            file = new FileReader(filename);
-            length = file.read(buff);
-            return new String(buff, 0, length);
-        } catch (IOException e) {
-            System.out.println("Error reading file. " + e.getMessage());
-            return null;
-        } finally {
-            try {
-                if (file != null) {
-                    file.close();
-                }
-            } catch (IOException e) {
-                System.out.println("Error closing file. " + e.getMessage());
-            }
-        }
+	char[] buff = new char[1024 * 10];
+	int length;
+	
+	try (FileReader file = new FileReader(filename)) {
+	    length = file.read(buff);
+	    return new String(buff, 0, length);
+	} catch (IOException e) {
+	    System.out.println("Error reading file. " + e.getMessage());
+	    return null;
+	}
     }
 
     @Override
