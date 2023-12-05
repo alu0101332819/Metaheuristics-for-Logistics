@@ -5,8 +5,9 @@
     <groupId>HeuristicsForLogistics</groupId>
     <artifactId>HeuristicsForLogistics</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <scope>test</scope>
 
-    <name>AirportLDH</name>
+    <name>Metaheuristics-for-Logistics</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
