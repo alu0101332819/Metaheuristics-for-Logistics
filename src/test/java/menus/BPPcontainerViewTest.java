@@ -9,52 +9,32 @@ import main.java.concrete.metaheuristics.containerBPP.BPPGreedy;
 import main.java.concrete.metaheuristics.containerBPP.BPPHillClimbing;
 import main.java.concrete.metaheuristics.containerBPP.BPPSimulatedAnnealing;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.Scanner;
 
-class BPPcontainerViewTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    private BPPcontainerView bppContainerView;
-    private Scanner mockScanner;
-
-    @BeforeEach
-    void setUp() {
-        bppContainerView = new BPPcontainerView();
-        mockScanner = mock(Scanner.class);
-    }
+public class BPPcontainerViewTest {
 
     @Test
-    void testRunExitOption() {
-        // Arrange
-        InputStream in = new ByteArrayInputStream("exit".getBytes());
-        System.setIn(in);
+    public void testHillClimbingBPP() {
+        // Create a mock ILoadingProblems object or use a real one if applicable
+        ILoadingProblems mockBPPProblem = new BPPHillClimbing();
 
-        // Act
-        assertDoesNotThrow(() -> bppContainerView.run(mockScanner, null));
+        // Redirect System.out for testing purposes
+        System.setOut(new java.io.ByteArrayOutputStream());
 
-        // Assert
-        verify(mockScanner, times(1)).nextLine();
+        // Call the method you want to test
+        BPPcontainerView.hillClimbingBPP(mockBPPProblem);
+
+        // Add assertions based on the expected behavior
+        // For example, check if the output matches your expectations
+        assertEquals("ExpectedOutput", System.out.toString().trim());
+
+        // Reset System.out to avoid interference with other tests
+        System.setOut(System.out);
     }
 
-    @Test
-    void testRunHillClimbingOption() {
-        // Arrange
-        InputStream in = new ByteArrayInputStream("1\nexit".getBytes());
-        System.setIn(in);
-
-        // Act
-        assertDoesNotThrow(() -> bppContainerView.run(mockScanner, null));
-
-        // Assert
-        verify(mockScanner, times(2)).nextLine();
-        verify(mockScanner, times(1)).nextInt();
-    }
-
-    // Add similar tests for other options (Simulated Annealing, Greedy, Grasp)
+    // Similarly, you can write tests for other methods like simulatedAnnealingBPP, greedyBPP, graspBPP, etc.
 }
+
