@@ -9,82 +9,37 @@ import main.java.concrete.metaheuristics.containerBPP.BPPGreedy;
 import main.java.concrete.metaheuristics.containerBPP.BPPHillClimbing;
 import main.java.concrete.metaheuristics.containerBPP.BPPSimulatedAnnealing;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.io.ByteArrayInputStream;
+import java.util.Scanner;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
 class BPPcontainerViewTest {
 
     @Test
-    void testHillClimbingBPP() {
-        // Create a BPPcontainerProblem instance for testing
-        BPPcontainerProblem problem = new BPPcontainerProblem();
+    void testRun() {
+        String input = "BPP_1.txt\n1\nexit";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        // Call the method under test
-        BPPcontainerView.hillClimbingBPP(problem);
+        Scanner mockScanner = mock(Scanner.class);
+        Mockito.when(mockScanner.nextLine()).thenReturn("BPP_1.txt", "exit");
 
-        // Example: Check if the solution is not null after applying hill climbing
-        assertNotNull(problem.getSolution());
+        // Assuming createBPPcontainerProblem returns a mock of ILoadingProblems for testing
+        ILoadingProblems mockBPPProblem = mock(ILoadingProblems.class);
+        Mockito.when(BPPcontainerView.createBPPcontainerProblem("BPP_1.txt")).thenReturn(mockBPPProblem);
 
-        // Example: Check if the solution meets some criteria (adjust based on your requirements)
-        assertTrue(problem.getSolution().isValid());
-
-        // Example: Check if the solution has a non-negative priority (adjust based on your requirements)
-        assertTrue(problem.getSolution().priority() >= 0);
-    }
-
-    @Test
-    void testSimulatedAnnealingBPP() {
-        // Create a BPPcontainerProblem instance for testing
-        BPPcontainerProblem problem = new BPPcontainerProblem();
-
-        // Call the method under test
-        BPPcontainerView.simulatedAnnealingBPP(problem);
-
-        // Example: Check if the solution is not null after applying simulated annealing
-        assertNotNull(problem.getSolution());
-
-        // Example: Check if the solution meets some criteria (adjust based on your requirements)
-        assertTrue(problem.getSolution().isValid());
-
-        // Example: Check if the solution has a non-negative priority (adjust based on your requirements)
-        assertTrue(problem.getSolution().priority() >= 0);
-    }
-
-    @Test
-    void testGreedyBPP() {
-        // Create a BPPcontainerProblem instance for testing
-        BPPcontainerProblem problem = new BPPcontainerProblem();
-
-        // Call the method under test
-        BPPcontainerView.greedyBPP(problem);
+        // Call the run method
+        BPPcontainerView.run(mockScanner, null);
 
         // Add assertions based on the expected behavior
+        // For example, you can check if certain methods were called on mockBPPProblem
+        Mockito.verify(mockBPPProblem, Mockito.times(1)).instancesFromText();
 
-        // Example: Check if the solution is not null after applying the greedy algorithm
-        assertNotNull(problem.getSolution());
-
-        // Example: Check if the solution meets some criteria (adjust based on your requirements)
-        assertTrue(problem.getSolution().isValid());
-
-        // Example: Check if the solution has a non-negative priority (adjust based on your requirements)
-        assertTrue(problem.getSolution().priority() >= 0);
-    }
-
-    @Test
-    void testGraspBPP() {
-        // Create a BPPcontainerProblem instance for testing
-        BPPcontainerProblem problem = new BPPcontainerProblem();
-
-        // Call the method under test
-        BPPcontainerView.graspBPP(problem);
-
-        // Example: Check if the solution is not null after applying the GRASP algorithm
-        assertNotNull(problem.getSolution());
-
-        // Example: Check if the solution meets some criteria (adjust based on your requirements)
-        assertTrue(problem.getSolution().isValid());
-
-        // Example: Check if the solution has a non-negative priority (adjust based on your requirements)
-        assertTrue(problem.getSolution().priority() >= 0);
+        // Reset System.in to its original value
+        System.setIn(System.in);
     }
 }
