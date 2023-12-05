@@ -5,6 +5,6 @@ import main.java.menus.VRPvehiclesView;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestVRPvehiclesView {
+public class TestVRPvehiclesView {
 
 }
