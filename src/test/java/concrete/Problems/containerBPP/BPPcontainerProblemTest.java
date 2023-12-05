@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import main.java.concrete.Problems.containerBPP.BPPcontainerProblem;
+import main.java.concrete.Problems.containerBPP.Item;
 import main.java.abstracts.problem.ILoadingProblems;
 import main.java.abstracts.problem.Problem;
 
@@ -17,7 +18,7 @@ class BPPcontainerProblemTest {
 
     @Test
     void testConstructorWithFilename() {
-        String filename = "testFile.txt";
+        String filename = "BPP_1.txt";
         BPPcontainerProblem bppContainerProblem = new BPPcontainerProblem(filename);
         // Add assertions based on the expected behavior of the constructor with a filename
         assertNotNull(bppContainerProblem);
